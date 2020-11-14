@@ -11,19 +11,19 @@ class User < ApplicationRecord
               # 半角英数字のみ可
               format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,20}+\z/i, message: "Include both letters and numbers"}
 
-    validates :last_name, 
+    validates :last_name,
               # 全角ひらがな、全角カタカナ、漢字
-              format: { with:/\A[ぁ-んァ-ン一-龥]/, message: "Full-width characters"}
+              format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "Full-width characters"}
 
-    validates :first_name, 
+    validates :first_name,
               # 全角ひらがな、全角カタカナ、漢字
-              format: { with:/\A[ぁ-んァ-ン一-龥]/, message: "Full-width characters"}
+              format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "Full-width characters"}
 
-    validates :last_name_kana, 
+    validates :last_name_kana,
               # 全角カナのみ可
               format: { with: /\A([ァ-ン]|ー)+\z/, message: "Full-width katakana characters"}
 
-    validates :first_name_kana, 
+    validates :first_name_kana,
               # 全角カナのみ可
               format: { with: /\A([ァ-ン]|ー)+\z/, message: "Full-width katakana characters"}
   end
