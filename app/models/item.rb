@@ -18,12 +18,12 @@ class Item < ApplicationRecord
     validates :image
   end
 
-  with_options numericality: { other_than: 0 } do
-    validates :category_id, format: { message: "Select"} 
-    validates :condition_id, format: { message: "Select"} 
-    validates :postage_payer_id, format: { message: "Select"} 
-    validates :prefecture_id, format: { message: "Select"} 
-    validates :handling_time_id, format: { message: "Select"} 
+  with_options numericality: { other_than: 0, message: "Select"} do
+    validates :category_id
+    validates :condition_id
+    validates :postage_payer_id
+    validates :prefecture_id
+    validates :handling_time_id
   end
 
 end
