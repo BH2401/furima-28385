@@ -2,7 +2,7 @@ class PurchasesController < ApplicationController
   before_action :set_purchase, only: [:index]
 
   def index
-    
+
   end
 
   def new
@@ -20,6 +20,7 @@ class PurchasesController < ApplicationController
   end
 
   def set_purchase
-    @purchase = Purchase.find(params[:item_id])
+    # @purchase = Purchase.find(params[:item_id])
+    @purchase = Item.find(params[:item_id])
   end
 end
