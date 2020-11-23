@@ -1,26 +1,29 @@
 class PurchasesController < ApplicationController
-  before_action :set_purchase, only: [:index]
+  before_action :set_purchase, only: [:index, :create]
 
   def index
-
-  end
-
-  def new
-    @purchase = Purchase.new
+    @purchase = ItemPurchase.new
   end
 
   def create
-    @purchase = Purchase.create(purchase_params)
+    @purchase = ItemPurchase.new(purchase_params)
+
+    if @purchase.valid?
+      @purchase.save
+      return redirect_to root_path
+    else
+      render :index
+    end
   end
 
   private
 
   def purchase_params
-    params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :postage_payer_id, :prefecture_id, :handling_time_id, :price).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:item_purchase).permit(:month, :year, :security_code, :post_code, :prefecture_id, :city, :area, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
   end
-
+  
   def set_purchase
     # @purchase = Purchase.find(params[:item_id])
-    @purchase = Item.find(params[:item_id])
+    @item = Item.find(params[:item_id])
   end
 end
