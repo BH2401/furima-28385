@@ -1,13 +1,14 @@
 class ItemPurchase
 
   include ActiveModel::Model
-  attr_accessor :card_information, :month, :year, :security_code, :post_code, :prefecture_id, :city, :area, :building_name, :phone_number, :user_id, :item_id
+  attr_accessor :post_code, :prefecture_id, :city, :area, :building_name, :phone_number, :user_id, :item_id
 
   with_options presence: true do
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "Input correctly"}
     validates :city
     validates :area
     validates :phone_number, numericality: { only_integer: true, message: 'Input only number' }
+    validates :phone_number, length: { maximum: 11, message: '11 numbers or less'} 
   end
 
   validates :prefecture_id, numericality: { other_than: 0, message: "Select" }
