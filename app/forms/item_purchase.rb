@@ -1,18 +1,17 @@
 class ItemPurchase
-
   include ActiveModel::Model
   attr_accessor :post_code, :prefecture_id, :city, :area, :building_name, :phone_number, :user_id, :item_id, :token
 
   with_options presence: true do
-    validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "Input correctly"}
+    validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'Input correctly' }
     validates :city
     validates :area
     validates :phone_number, numericality: { only_integer: true, message: 'Input only number' },
-                             length: { maximum: 11, message: '11 numbers or less'} 
+                             length: { maximum: 11, message: '11 numbers or less' }
     validates :token
   end
 
-  validates :prefecture_id, numericality: { other_than: 0, message: "Select" }
+  validates :prefecture_id, numericality: { other_than: 0, message: 'Select' }
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)

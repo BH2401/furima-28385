@@ -31,7 +31,7 @@ RSpec.describe ItemPurchase, type: :model do
       it 'post_codeが半角のハイフンを含んだ正しい形式でないと購入できないこと' do
         @item_purchase.post_code = '1234567'
         @item_purchase.valid?
-        expect(@item_purchase.errors.full_messages).to include("Post code Input correctly")
+        expect(@item_purchase.errors.full_messages).to include('Post code Input correctly')
       end
 
       it 'prefecture_idを選択していないと購入できないこと' do
@@ -61,13 +61,13 @@ RSpec.describe ItemPurchase, type: :model do
       it 'phone_numberが半角数字以外だと購入できないこと' do
         @item_purchase.phone_number = '090aaaaaaaa'
         @item_purchase.valid?
-        expect(@item_purchase.errors.full_messages).to include("Phone number Input only number")
+        expect(@item_purchase.errors.full_messages).to include('Phone number Input only number')
       end
 
       it 'phone_numberが11桁より大きいと購入できないこと' do
         @item_purchase.phone_number = '090123456789'
         @item_purchase.valid?
-        expect(@item_purchase.errors.full_messages).to include("Phone number 11 numbers or less")
+        expect(@item_purchase.errors.full_messages).to include('Phone number 11 numbers or less')
       end
 
       it 'tokenが空だと購入できないこと' do
@@ -75,7 +75,6 @@ RSpec.describe ItemPurchase, type: :model do
         @item_purchase.valid?
         expect(@item_purchase.errors.full_messages).to include("Token can't be blank")
       end
-
     end
   end
 end
