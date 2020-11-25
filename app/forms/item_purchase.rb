@@ -9,6 +9,7 @@ class ItemPurchase
     validates :area
     validates :phone_number, numericality: { only_integer: true, message: 'Input only number' },
                              length: { maximum: 11, message: '11 numbers or less'} 
+    validates :token
   end
 
   validates :prefecture_id, numericality: { other_than: 0, message: "Select" }

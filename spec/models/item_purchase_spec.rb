@@ -11,7 +11,7 @@ RSpec.describe ItemPurchase, type: :model do
     end
 
     context '商品購入ができる時' do
-      it 'post_code,prefecture_id,city,area,building_name,phone_numberが存在すれば登録できること' do
+      it 'post_code,prefecture_id,city,area,building_name,phone_number,tokenが存在すれば登録できること' do
         expect(@item_purchase).to be_valid
       end
 
@@ -68,6 +68,12 @@ RSpec.describe ItemPurchase, type: :model do
         @item_purchase.phone_number = '090123456789'
         @item_purchase.valid?
         expect(@item_purchase.errors.full_messages).to include("Phone number 11 numbers or less")
+      end
+
+      it 'tokenが空だと購入できないこと' do
+        @item_purchase.token = nil
+        @item_purchase.valid?
+        expect(@item_purchase.errors.full_messages).to include("Token can't be blank")
       end
 
     end
